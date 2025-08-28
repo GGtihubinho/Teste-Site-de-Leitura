@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Infográfico: Problemas Reais na Leitura</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+ 
+    body {
+      background: linear-gradient(135deg, #faf5eb 0%, #f0e6d2 100%);
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 40px 20px;
+      color: #5a4631;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+ 
+    h1 {
+      font-size: 2.4rem;
+      margin-bottom: 30px;
+      color: #7b6f4f;
+      font-weight: 700;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+ 
+    .chart-container {
+      background: white;
+      padding: 40px 60px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(163, 145, 110, 0.25);
+      max-width: 600px;
+      width: 100%;
+      margin-bottom: 40px;
+    }
+ 
+    .legend {
+      max-width: 600px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #5a4631;
+    }
+ 
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: default;
+      user-select: none;
+    }
+ 
+    .color-box {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Problemas Reais na Leitura</h1>
+ 
+  <div class="chart-container">
+    <canvas id="pizzaChart"></canvas>
+  </div>
+ 
+  <div class="legend" id="legend">
+    <!-- Legenda será preenchida via JS -->
+  </div>
+ 
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const ctx = document.getElementById('pizzaChart').getContext('2d');
+ 
+    const data = {
+      labels: [
+        'Analfabetismo funcional',
+        'Baixo acesso a livros',
+        'Desinteresse pela leitura',
+        'Falta de incentivo escolar',
+        'Dificuldades de compreensão'
+      ],
+      datasets: [{
+        data: [35, 25, 15, 15, 10],
+        backgroundColor: [
+          '#cdb68e', // bege mais forte
+          '#d6c9af', // bege claro
+          '#bfae7a', // bege médio
+          '#a3916e', // marrom claro
+          '#7b6f4f'  // marrom escuro
+        ],
+        borderColor: '#fff',
+        borderWidth: 2,
+        hoverOffset: 30
+      }]
+    };
+ 
+    const config = {
+      type: 'doughnut',
+      data: data,
+      options: {
+        responsive: true,
+        cutout: '55%',
+        plugins: {
+          legend: {
+            display: false
+          },
+          tooltip: {
+            backgroundColor: '#a89159',
+            titleFont: { size: 16, weight: 'bold' },
+            bodyFont: { size: 14 },
+            padding: 12,
+            cornerRadius: 6,
+            callbacks: {
+              label: ctx => `${ctx.label}: ${ctx.parsed}%`
+            }
+          }
+        }
+      }
+    };
+ 
+    const pizzaChart = new Chart(ctx, config);
+ 
+    // Criar legenda customizada
+    const legendContainer = document.getElementById('legend');
+    data.labels.forEach((label, i) => {
+      const color = data.datasets[0].backgroundColor[i];
+      const item = document.createElement('div');
+      item.classList.add('legend-item');
+      item.innerHTML = `<div class="color-box" style="background-color:${color}"></div>${label}`;
+      legendContainer.appendChild(item);
+    });
+  </script>
+</body>
+</html>
+ 

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Palavriei - Aviso</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Great+Vibes&family=Girassol&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #fff5f5;
+      color: #5b0000;
+      background-image: url('https://cdn.pixabay.com/photo/2013/07/13/10/22/divider-157965_1280.png');
+      background-repeat: no-repeat;
+      background-position: top center;
+      background-size: 200px;
+      padding: 0 100px;
+    }
+
+    nav {
+      font-family: 'Girassol', cursive;
+      font-size: 2.5rem;
+      color: white;
+      background-color: #b00000;
+      padding: 0.5rem 1.5rem;
+      display: inline-block;
+      margin: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .warning-banner {
+      background-color: #ffcccb;
+      color: #8a1f1f;
+      text-align: center;
+      padding: 2rem 1rem;
+      border: 2px solid #ff4444;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(255, 0, 0, 0.2);
+      margin-top: 4rem;
+      position: relative;
+    }
+
+    .warning-banner img {
+      width: 60px;
+      margin-bottom: 1rem;
+    }
+
+    .warning-banner h1 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    .warning-banner p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .limites-section {
+      margin-top: 4rem;
+      text-align: center;
+    }
+
+    .limites-section h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: #a50000;
+    }
+
+    .limites {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .limite {
+      flex: 1 1 220px;
+      background-color: #ffecec;
+      border: 2px dashed #ff6a6a;
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(255, 0, 0, 0.1);
+      transition: transform 0.3s;
+    }
+
+    .limite:hover {
+      transform: scale(1.03);
+    }
+
+    .limite img {
+      width: 50px;
+      margin-bottom: 1rem;
+    }
+
+    .limite p {
+      font-size: 1rem;
+    }
+
+    /* Footer atualizado */
+    footer {
+      text-align: center;
+      padding: 2.5rem 0;
+      margin-top: 6rem;
+      font-size: 1.3rem;
+      font-weight: bold;
+      background: linear-gradient(90deg, #b00000, #ff4444);
+      color: #fff;
+      border-radius: 12px 12px 0 0;
+      box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.25);
+    }
+
+    footer .guest-button {
+      background-color: #fff;
+      color: #b00000;
+      font-size: 1.2rem;
+      font-weight: 600;
+      padding: 0.8rem 2rem;
+      margin-top: 1rem;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    footer .guest-button:hover {
+      background-color: #ffdddd;
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 0 20px;
+      }
+
+      .limites {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    .login-button:hover {
+      background-color: #c4422d;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>Palavriei</nav>
+
+  <section class="warning-banner">
+    <img src="https://cdn-icons-png.flaticon.com/512/463/463612.png" alt="Alerta">
+    <h1>Atenção: Conta Iniciante</h1>
+    <p>Você está utilizando uma conta do tipo <strong>iniciante</strong>. Alguns recursos estarão limitados para garantir a melhor experiência possível sem sobrecarga. Você poderá desbloquear mais funcionalidades ao evoluir sua conta.</p>
+  </section>
+
+  <section class="limites-section">
+    <h2>Recursos disponíveis nesta fase:</h2>
+    <div class="limites">
+      <div class="limite">
+        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828843.png" alt="Livro limitado">
+        <p>Acesso limitado a apenas 3 livros por semana.</p>
+      </div>
+      <div class="limite">
+        <img src="https://cdn-icons-png.flaticon.com/512/5973/5973800.png" alt="Comunidade restrita">
+        <p>Sem acesso ao fórum e grupos de leitura.</p>
+      </div>
+      <div class="limite">
+        <img src="https://cdn-icons-png.flaticon.com/512/753/753345.png" alt="Progresso">
+        <p>Histórico e progresso não serão salvos permanentemente.</p>
+      </div>
+      <div class="limite">
+        <img src="https://cdn-icons-png.flaticon.com/512/753/753318.png" alt="Suporte">
+        <p>Suporte e recomendações automáticas desativados.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Palavriei <br>
+    <button type="button" class="guest-button" onclick="location='Aviso.html'">Continuar</button>
+  </footer>
+
+</body>
+</html>

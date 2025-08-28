@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Biblioteca Pública – 60 Livros</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+    body {
+      background: linear-gradient(135deg, #faf5eb 0%, #f0e6d2 100%);
+      font-family: 'Montserrat', sans-serif;
+      margin: 0; padding: 40px 20px;
+      color: #5a4631;
+    }
+    h1 {
+      text-align: center; font-size: 2.4rem; font-weight: 700;
+      margin-bottom: 30px;
+      color: #7b6f4f;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+    .scroll-container {
+      display: flex;
+      overflow-x: auto;
+      padding-bottom: 20px;
+      gap: 15px;
+      scrollbar-width: thin;
+      scrollbar-color: #a38f6e transparent;
+    }
+    .scroll-container::-webkit-scrollbar {
+      height: 8px;
+    }
+    .scroll-container::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .scroll-container::-webkit-scrollbar-thumb {
+      background-color: #a38f6e;
+      border-radius: 4px;
+    }
+    .livro {
+      flex: 0 0 auto;
+      width: 100px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(163, 145, 110, 0.25);
+      padding: 10px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+    .livro:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 36px rgba(163,145,110,0.45);
+    }
+    .capa {
+      width: 80px; height: 120px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 8px;
+      box-shadow: 0 2px 6px rgba(163,145,110,0.3);
+    }
+    .titulo {
+      font-weight: 700; font-size: 0.85rem; color: #5a4631;
+      margin-bottom: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .autor {
+      font-size: 0.75rem; color: #8c7f58; font-style: italic;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <h1>Biblioteca</h1>
+  <div class="scroll-container">
+    <!-- Livro Frankenstein com link para página local -->
+    <div class="livro">
+      <a href="Livro Frankeinsteim.html">
+        <img src="https://www.gutenberg.org/cache/epub/84/pg84.cover.medium.jpg" alt="Frankenstein" class="capa"/>
+        <div class="titulo">Frankenstein</div>
+        <div class="autor">Mary Shelley</div>
+      </a>
+    </div>
+
+    <!-- Outros livros continuam aqui normalmente... -->
+  </div>
+</body>
+</html>

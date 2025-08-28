@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Livro Frankenstein – Atividade de Leitura</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #faf5eb;
+      color: #5a4631;
+      padding: 40px;
+      line-height: 1.6;
+      position: relative;
+    }
+    h1 {
+      color: #7b6f4f;
+      margin-bottom: 20px;
+    }
+    .texto {
+      max-width: 800px;
+      margin-bottom: 20px;
+    }
+    .voltar, .proximo {
+      display: inline-block;
+      margin-top: 30px;
+      text-decoration: none;
+      color: #5a4631;
+      font-weight: bold;
+      border: 1px solid #a38f6e;
+      padding: 8px 14px;
+      border-radius: 6px;
+      transition: background 0.3s;
+    }
+    .voltar:hover, .proximo:hover {
+      background: #e4d7bc;
+    }
+    .proximo {
+      margin-left: 20px;
+    }
+    .pontuacao {
+      font-size: 1.5rem;
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      color: #7b6f4f;
+      padding: 10px 20px;
+      background: #f4f1e1;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      font-weight: bold;
+    }
+    .finalizacao {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 1.5rem;
+      color: #7b6f4f;
+      padding: 15px;
+      background: #e4d7bc;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Frankenstein – Mary Shelley</h1>
+  <div class="pontuacao" id="pontuacao">Pontuação: 0</div>
+
+  <div class="texto" id="texto">
+    <!-- Texto da Atividade, vai ser atualizado conforme as etapas -->
+    <p>Leia o texto abaixo e clique em "Próximo" quando terminar:</p>
+  </div>
+
+  <!-- Botões de Navegação -->
+  <a href="Biblioteca.html" class="voltar">← Voltar à biblioteca</a>
+  <a href="#" class="proximo" id="proximo" onclick="avancarAtividade()">Próximo →</a>
+
+  <div id="finalizacao" class="finalizacao" style="display: none;">
+    <p>Parabéns! Você concluiu todas as atividades.</p>
+    <p>Pontuação final: <span id="pontuacaoFinal">0</span></p>
+  </div>
+
+  <script>
+    // Variáveis do script
+    let pontuacao = 0;
+    let atividades = [
+      "Você ficará feliz em saber que nenhum desastre acompanhou o início de um empreendimento que você encarava com tantos maus presságios. Cheguei aqui ontem, e minha primeira tarefa é assegurar à minha querida irmã meu bem-estar e minha crescente confiança no sucesso do meu empreendimento.",
+      "Já estou bem ao norte de Londres e, enquanto caminho pelas ruas de Petersburgo, sinto uma brisa fria do norte acariciar minhas bochechas, o que me revigora e me enche de alegria. Você entende essa sensação? Essa brisa, que veio das regiões para onde estou avançando, me dá um gostinho daqueles climas gelados. Inspirados por esse vento promissor, meus devaneios se tornam mais fervorosos e vívidos.",
+      "Tento em vão convencer-me de que o polo é o berço da geada e da desolação; ele sempre se apresenta à minha imaginação como a região da beleza e do deleite. Lá, Margaret, o sol está para sempre visível, seu amplo disco apenas contornando o horizonte e difundindo um esplendor perpétuo. Lá — pois, com sua permissão, minha irmã, depositarei alguma confiança nos navegadores que me precederam — lá a neve e a geada são banidas; e, navegando por um mar calmo, podemos ser transportados para uma terra que supera em maravilhas e beleza todas as regiões até então descobertas no globo habitável.",
+      "Suas produções e características podem ser incomparáveis, assim como os fenômenos dos corpos celestes, sem dúvida, o são nessas solidões desconhecidas. O que não se pode esperar de um país de luz eterna? Posso lá descobrir o poder maravilhoso que atrai a agulha e regular mil observações celestes que exigem apenas esta viagem para tornar suas aparentes excentricidades consistentes para sempre. Saciarei minha ardente curiosidade com a visão de uma parte do mundo nunca antes visitada e poderei pisar em uma terra nunca antes marcada pelo pé do homem."
+    ];
+    let atividadeAtual = 0;
+
+    // Função para avançar para a próxima atividade
+    function avancarAtividade() {
+      if (atividadeAtual < atividades.length) {
+        // Mostrar o texto da próxima atividade
+        document.getElementById("texto").innerHTML = `<p>${atividades[atividadeAtual]}</p>`;
+        
+        // Incrementar a atividade
+        atividadeAtual++;
+
+        // Adicionar 10 pontos a cada vez que o botão "Próximo" for clicado
+        pontuacao += 10;
+        document.getElementById("pontuacao").textContent = "Pontuação: " + pontuacao; // Atualizar pontuação
+      }
+
+      // Se todas as atividades forem concluídas
+      if (atividadeAtual === atividades.length) {
+        // Exibir mensagem de finalização
+        document.getElementById("finalizacao").style.display = 'block';
+        document.getElementById("pontuacaoFinal").textContent = pontuacao;
+        document.getElementById("proximo").style.display = 'none'; // Ocultar o botão "Próximo"
+      }
+    }
+  </script>
+</body>
+</html>

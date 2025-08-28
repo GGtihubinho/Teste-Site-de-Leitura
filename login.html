@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login | Palavriei</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Great+Vibes&family=Girassol&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #fffaf0;
+      color: #2b1700;
+      background-image: url('https://cdn.pixabay.com/photo/2014/12/21/23/44/frame-576122_1280.png');
+      background-repeat: repeat-y;
+      background-position: left top, right top;
+      background-size: 120px auto;
+      padding: 0 130px;
+    }
+
+    nav {
+      font-family: 'Girassol', cursive;
+      font-size: 2.5rem;
+      color: #fffaf0;
+      background-color: #8a3b12;
+      padding: 0.5rem 1.5rem;
+      display: inline-block;
+      margin: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .login-container {
+      max-width: 400px;
+      margin: 5rem auto;
+      padding: 3rem 2rem;
+      background-color: #fcead8;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      text-align: center;
+    }
+
+    .login-container h2 {
+      font-family: 'Girassol', cursive;
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
+      color: #7a2807;
+    }
+
+    input[type="email"],
+    input[type="password"] {
+      width: 90%;
+      padding: 0.9rem;
+      margin: 0.6rem 0;
+      border: 2px solid #caa67f;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    .login-button,
+    .register-button,
+    .guest-button {
+      width: 95%;
+      padding: 0.9rem;
+      margin-top: 1rem;
+      border: none;
+      border-radius: 40px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .login-button {
+      background-color: #e5563e;
+      color: white;
+    }
+
+    .login-button:hover {
+      background-color: #c4422d;
+    }
+
+    .register-button {
+      background-color: #fff;
+      color: #8a3b12;
+      border: 2px solid #8a3b12;
+    }
+
+    .register-button:hover {
+      background-color: #fce0c5;
+    }
+
+    .guest-button {
+      background-color: transparent;
+      color: #2b1700;
+      text-decoration: underline;
+      border: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      font-size: 1rem;
+      background-color: #fcead8;
+      color: #333;
+      margin-top: 5rem;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 0 20px;
+        background-image: none;
+      }
+
+      .login-container {
+        margin: 3rem auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>Palavriei</nav>
+
+  <div class="login-container">
+    <h2>Bem-vindo de volta!</h2>
+    <form>
+      <input type="email" placeholder="Email" required><br>
+      <input type="password" placeholder="Senha" required><br>
+      <button type="submit" class="login-button">Entrar</button>
+      <button type="button" class="register-button" onclick="location='cadastre-se.html'">Cadastrar-se</button>
+      <button type="button" class="guest-button" onclick="location='Aviso.html'">Usar como Iniciante</button>
+    </form>
+  </div>
+
+  <footer>
+    &copy; 2025 "Palavriei". Projeto de incentivo à leitura.
+  </footer>
+
+</body>
+</html>

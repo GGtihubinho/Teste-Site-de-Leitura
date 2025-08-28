@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Desempenho do Usuário</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+ 
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #faf5eb 0%, #f0e6d2 100%);
+      margin: 0;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      color: #5a4631;
+    }
+ 
+    h1 {
+      color: #5a4631;
+      margin-bottom: 30px;
+      font-weight: 700;
+      font-size: 2.2rem;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+ 
+    .chart-container {
+      background: white;
+      padding: 30px 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(144, 123, 75, 0.3);
+      max-width: 900px;
+      width: 100%;
+      margin-bottom: 40px;
+    }
+ 
+    .incentivo {
+      background: #d6c9af;
+      border: 2px solid #a3916e;
+      color: #5a4631;
+      font-size: 1.6rem;
+      font-weight: 700;
+      padding: 25px 40px;
+      border-radius: 50px;
+      max-width: 600px;
+      width: 100%;
+      text-align: center;
+      user-select: none;
+      box-shadow: 0 8px 20px rgba(163, 145, 110, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      animation: pulse 2.5s infinite ease-in-out;
+    }
+ 
+    .incentivo span.emoji {
+      font-size: 2.4rem;
+      animation: bounce 2s infinite;
+    }
+ 
+    /* Animações para chamar atenção */
+    @keyframes pulse {
+      0%, 100% {
+        box-shadow: 0 8px 20px rgba(163, 145, 110, 0.4);
+      }
+      50% {
+        box-shadow: 0 12px 30px rgba(163, 145, 110, 0.7);
+      }
+    }
+ 
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10%);
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Seu Progresso Diário de Leitura</h1>
+  <div class="chart-container">
+    <canvas id="progressoChart"></canvas>
+  </div>
+ 
+  <div class="incentivo">
+    <span class="emoji">📚</span>
+    Continue assim, cada dia de leitura te aproxima do seu objetivo! Você consegue!
+    <span class="emoji">🔥</span>
+  </div>
+ 
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const ctx = document.getElementById('progressoChart').getContext('2d');
+ 
+    // Função para retornar o nome do dia da semana em pt-BR (abreviado)
+    function getWeekdayLabel(date) {
+      return date.toLocaleDateString('pt-BR', { weekday: 'short' }); // ex: "seg", "ter"
+    }
+ 
+    // Gerar datas diárias com formato "Seg 01/08"
+    function generateLabels(startDate, days) {
+      const labels = [];
+      for (let i = 0; i < days; i++) {
+        const date = new Date(startDate);
+        date.setDate(date.getDate() + i);
+        const weekday = getWeekdayLabel(date);
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        labels.push(`${weekday.charAt(0).toUpperCase() + weekday.slice(1)} ${day}/${month}`);
+      }
+      return labels;
+    }
+ 
+    // Simular progresso estilo "Duolingo":
+    // - Se usou o site no dia, progresso aumenta (valor alto)
+    // - Se não usou, progresso diminui (valor baixo)
+    // Para a simulação, 1 = usou, 0 = não usou
+    // Exemplo de uso nos últimos 20 dias:
+    const usoDiario = [
+      1, 1, 1, 0, 0,
+      1, 1, 0, 1, 1,
+      1, 0, 0, 1, 1,
+      1, 1, 1, 0, 1
+    ];
+ 
+    // Valores das barras (altura percentual)
+    // Se usou = valor entre 70-100%, se não usou = 0-30%
+    // Para variar o tamanho, criamos valores randômicos dentro dessas faixas
+    function gerarAlturas(uso) {
+      return uso.map(u => {
+        if (u === 1) return Math.floor(Math.random() * 30) + 70; // 70-100
+        else return Math.floor(Math.random() * 30);             // 0-30
+      });
+    }
+ 
+    const labels = generateLabels(new Date('2025-08-01'), 20);
+    const dataValues = gerarAlturas(usoDiario);
+ 
+    const data = {
+      labels: labels,
+      datasets: [{
+        label: 'Dias de leitura',
+        data: dataValues,
+        backgroundColor: '#cdb68e',
+        borderRadius: 6,
+        maxBarThickness: 35,
+        hoverBackgroundColor: '#b39f73',
+      }]
+    };
+ 
+    const config = {
+      type: 'bar',
+      data: data,
+      options: {
+        responsive: true,
+        animation: {
+          duration: 1000,
+          easing: 'easeOutQuart'
+        },
+        plugins: {
+          legend: {
+            display: false
+          },
+          tooltip: {
+            enabled: true,
+            backgroundColor: '#a89159',
+            titleFont: { size: 16, weight: 'bold' },
+            bodyFont: { size: 14 },
+            padding: 10,
+            cornerRadius: 6,
+            callbacks: {
+              label: ctx => `${ctx.parsed.y}% de atividade`
+            }
+          }
+        },
+        scales: {
+          x: {
+            grid: {
+              display: false
+            },
+            ticks: {
+              font: {
+                size: 13,
+                weight: '600',
+                family: 'Montserrat, sans-serif',
+              },
+              color: '#7b6f4f',
+              maxRotation: 45,
+              minRotation: 45,
+            }
+          },
+          y: {
+            beginAtZero: true,
+            max: 100,
+            ticks: {
+              stepSize: 20,
+              font: {
+                size: 14,
+                family: 'Montserrat, sans-serif',
+              },
+              color: '#7b6f4f',
+              callback: val => val + '%'
+            },
+            grid: {
+              color: '#e5e0ce',
+              borderDash: [4, 6],
+            }
+          }
+        }
+      }
+    };
+ 
+    new Chart(ctx, config);
+  </script>
+</body>
+</html>
